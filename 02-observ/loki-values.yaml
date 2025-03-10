@@ -1,0 +1,123 @@
+nodeSelector:
+  node-role: "observ"
+tolerations:
+- key: "node-role"        
+  operator: "Equal"
+  value: "observ"        
+  effect: "NoSchedule"
+
+loki:
+  nodeSelector:
+    node-role: "observ"
+  tolerations:
+  - key: "node-role"         
+    operator: "Equal"
+    value: "observ"        
+    effect: "NoSchedule"
+  commonConfig:
+    replication_factor: 1
+  schemaConfig:
+    configs:
+      - from: "2025-02-01"
+        store: tsdb
+        object_store: s3
+        schema: v13
+        index:
+          prefix: loki_index_
+          period: 24h
+  storage:
+    bucketNames:
+      chunks: valyan-otus.ru
+      ruler: valyan-otus.ru
+      admin: log
+    type: 's3'
+    s3:
+      endpoint: storage.yandexcloud.net
+      secretAccessKey: ##yc iam access-key create --service-account-name <service-account-name> (key_secret)
+      accessKeyId:  ##yc iam access-key create --service-account-name <service-account-name> (key_id)
+  auth_enabled: false
+
+      
+deploymentMode: SingleBinary
+
+singleBinary:
+  replicas: 1
+  nodeSelector:
+    node-role: "observ"
+  tolerations:
+    - key: "node-role"         
+      operator: "Equal"
+      value: "observ"        
+      effect: "NoSchedule"
+
+monitoring:
+  selfMonitoring:
+    enabled: false
+  lokiCanary:
+    nodeSelector:
+      node-role: "observ"
+    tolerations:
+      - key: "node-role"         
+        operator: "Equal"
+        value: "observ"        
+        effect: "NoSchedule"
+
+gateway:
+  nodeSelector:
+    node-role: "observ"
+  tolerations:
+    - key: "node-role"         
+      operator: "Equal"
+      value: "observ"        
+      effect: "NoSchedule"
+
+resultsCache:
+  nodeSelector:
+    node-role: "observ"
+  tolerations:
+    - key: "node-role"         
+      operator: "Equal"
+      value: "observ"        
+      effect: "NoSchedule"
+
+chunksCache:
+  nodeSelector:
+    node-role: "observ"
+  tolerations:
+    - key: "node-role"         
+      operator: "Equal"
+      value: "observ"        
+      effect: "NoSchedule"
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1024Mi
+    limits:
+      cpu: 1000m
+      memory: 2048Mi
+
+
+backend:
+  replicas: 0
+read:
+  replicas: 0
+write:
+  replicas: 0
+ingester:
+  replicas: 0
+querier:
+  replicas: 0
+queryFrontend:
+  replicas: 0
+queryScheduler:
+  replicas: 0
+distributor:
+  replicas: 0
+compactor:
+  replicas: 0
+indexGateway:
+  replicas: 0
+bloomCompactor:
+  replicas: 0
+bloomGateway:
+  replicas: 0

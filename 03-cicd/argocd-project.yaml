@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: otus-mvp-project
+  namespace: cicd
+spec:
+  description: otus-mvp-project
+  sourceRepos:
+  - 'https://github.com/Kuber-2024-10OTUS/Valyanchik_repo.git'
+  destinations:
+  - namespace: '*'
+    server: https://kubernetes.default.svc
+    name: otus-k8s-zonal  ##чувствительный параметр
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
