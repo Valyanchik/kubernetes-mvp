@@ -6,7 +6,7 @@ metadata:
 spec:
   description: otus-mvp-project
   sourceRepos:
-  - 'https://github.com/Kuber-2024-10OTUS/Valyanchik_repo.git'
+  - 'https://github.com/Valyanchik/kubernetes-mvp.git'
   destinations:
   - namespace: '*'
     server: https://kubernetes.default.svc

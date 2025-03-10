@@ -6,8 +6,8 @@ metadata:
 spec:
   project: otus-mvp-project
   source:
-    repoURL: https://github.com/Kuber-2024-10OTUS/Valyanchik_repo.git
-    targetRevision: kubernetes-mvp   ##ветка, в которой лежит чарт по пути в path
+    repoURL: https://github.com/Valyanchik/kubernetes-mvp.git
+    targetRevision: main ##ветка, в которой лежит чарт по пути в path
     path: kubernetes-mvp/04-app/helm-chart/
     helm:
       releaseName: google-online-boutique
