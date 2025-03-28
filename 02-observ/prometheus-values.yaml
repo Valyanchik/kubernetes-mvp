@@ -2,96 +2,54 @@ crds:
   upgradeJob:
     nodeSelector:
       node-role: "observ"
-    tolerations:
-    - key: "node-role"
-      operator: "Equal"
-      value: "observ"
-      effect: "NoSchedule"
 
 alertmanager:  
   alertmanagerSpec:
     nodeSelector:
       node-role: "observ"
-    tolerations:
-    - key: "node-role"
-      operator: "Equal"
-      value: "observ"
-      effect: "NoSchedule"
 
 prometheusOperator:
   admissionWebhooks:
     deployment:
       nodeSelector:
         node-role: "observ"
-      tolerations:
-      - key: "node-role"
-        operator: "Equal"
-        value: "observ"
-        effect: "NoSchedule"
     patch:
       nodeSelector:
         node-role: "observ"
-      tolerations:
-      - key: "node-role"
-        operator: "Equal"
-        value: "observ"
-        effect: "NoSchedule"
   nodeSelector:
     node-role: "observ"
-  tolerations:
-  - key: "node-role"
-    operator: "Equal"
-    value: "observ"
-    effect: "NoSchedule"
 
 prometheus:
   prometheusSpec:
     nodeSelector:
       node-role: "observ"
-    tolerations:
-    - key: "node-role"
-      operator: "Equal"
-      value: "observ"
-      effect: "NoSchedule"
 
 grafana:
   nodeSelector:
     node-role: "observ"
-  tolerations:
-  - key: "node-role"
-    operator: "Equal"
-    value: "observ"
-    effect: "NoSchedule"
   service:
+    type: NodePort
     selector:
       app.kubernetes.io/instance: prometheus-stack
       app.kubernetes.io/name: grafana
-    type: NodePort
-    ports:
-    - name: http-web
-      protocol: TCP
-      port: 80
-      targetPort: 3000
-      nodePort: 30081
-
+    port: 81
+    targetPort: 3000
+    nodePort: 30081
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+      - name: Loki
+        type: loki
+        url: http://loki-gateway.observ.svc.cluster.local/
+        access: proxy
+        isDefault: false
 
 kube-state-metrics:
   nodeSelector:
     node-role: "observ"
-  tolerations:
-  - key: "node-role"
-    operator: "Equal"
-    value: "observ"
-    effect: "NoSchedule"
 
 thanosRuler:  
   thanosRulerSpec:
     nodeSelector:
       node-role: "observ"
-    tolerations:
-    - key: "node-role"
-      operator: "Equal"
-      value: "observ"
-      effect: "NoSchedule"
-
-
