@@ -3,23 +3,27 @@ releases:
   - name: loki
     chart: grafana/loki 
     namespace: observ
+    createNamespace: true
     values:
       - ./02-observ/loki-values.yaml
 
   - name: promtail
     chart: grafana/promtail
     namespace: observ
+    createNamespace: true
     values:
       - ./02-observ/promtail-values.yaml
 
   - name: prometheus-stack
     chart: prometheus-community/kube-prometheus-stack 
     namespace: observ
+    createNamespace: true
     values:
       - ./02-observ/prometheus-values.yaml
 
   - name: argocd
     chart: argo/argo-cd
     namespace: cicd
+    createNamespace: true
     values:
       - ./03-cicd/argocd-values.yaml

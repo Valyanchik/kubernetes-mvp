@@ -11,7 +11,7 @@ resource "yandex_kubernetes_cluster" "otus-k8s-zonal" {
       subnet_id = yandex_vpc_subnet.otus-subnet-1.id
     }
     security_group_ids = [yandex_vpc_security_group.k8s-public-services.id,yandex_vpc_security_group.k8s-cluster-traffic.id]
-    version = "1.28"
+    version = "1.29"
     public_ip = true
   }
   cluster_ipv4_range = var.cluster_ipv4_range

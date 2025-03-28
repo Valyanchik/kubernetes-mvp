@@ -2,7 +2,7 @@ resource "yandex_kubernetes_node_group" "worker-ng" {
   name        = "worker-ng"
   description = "nodegroup for application workload"
   cluster_id  = "${yandex_kubernetes_cluster.otus-k8s-zonal.id}"
-  version     = "1.28"
+  version     = "1.29"
   instance_template {
     name = "worker-{instance.short_id}-{instance_group.id}"
     platform_id = "standard-v1"

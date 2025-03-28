@@ -2,7 +2,7 @@ resource "yandex_kubernetes_node_group" "cicd-ng" {
   name        = "cicd-ng"
   description = "nodegroup for ci-cd services"
   cluster_id  = "${yandex_kubernetes_cluster.otus-k8s-zonal.id}"
-  version     = "1.28"
+  version     = "1.29"
   instance_template {
     name = "cicd-{instance.short_id}-{instance_group.id}"
     platform_id = "standard-v1"

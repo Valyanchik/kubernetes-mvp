@@ -75,7 +75,6 @@ grafana:
       nodePort: 30081
 
 
-
 kube-state-metrics:
   nodeSelector:
     node-role: "observ"

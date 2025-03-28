@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/Valyanchik/kubernetes-mvp.git
     targetRevision: main ##ветка, в которой лежит чарт по пути в path
-    path: kubernetes-mvp/04-app/helm-chart/
+    path: 04-app/helm-chart/
     helm:
       releaseName: google-online-boutique
       valueFiles:
